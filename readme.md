@@ -19,7 +19,6 @@ Conversely, if you want to get the hash value of "AAA" from "cb1ad2119d8fafb6956
 
 to obtain it.
 
-## please add more hash plz!
 This repository still supports only 3-digit alphanumeric characters.
-If you are able to calculate more than 5 alphanumeric digits, please make a Pull Request.
+If you are able to calculate more than 4 alphanumeric digits, please make a Pull Request.
 This repository is limited by one person's computing resources. Your help is essential.
