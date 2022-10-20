@@ -86,7 +86,8 @@ if (cluster.isPrimary) {
             }, 3000);
         } else {
             let message = message;
-            if (message == "con" || message == "prn" || message == "aux" || message == "nul" || message == "com1" || message == "com2" || message == "com3" || message == "com4" || message == "com5" || message == "com6" || message == "com7" || message == "com8" || message == "com9" || message == "lpt1" || message == "lpt2" || message == "lpt3" || message == "lpt4" || message == "lpt5" || message == "lpt6" || message == "lpt7" || message == "lpt8" || message == "lpt9") return process.send("end");
+            let message_toLowerCase = message.toLowerCase();
+            if (message_toLowerCase == "con" || message_toLowerCase == "prn" || message_toLowerCase == "aux" || message_toLowerCase == "nul" || message_toLowerCase == "com1" || message_toLowerCase == "com2" || message_toLowerCase == "com3" || message_toLowerCase == "com4" || message_toLowerCase == "com5" || message_toLowerCase == "com6" || message_toLowerCase == "com7" || message_toLowerCase == "com8" || message_toLowerCase == "com9" || message_toLowerCase == "lpt1" || message_toLowerCase == "lpt2" || message_toLowerCase == "lpt3" || message_toLowerCase == "lpt4" || message_toLowerCase == "lpt5" || message_toLowerCase == "lpt6" || message_toLowerCase == "lpt7" || message_toLowerCase == "lpt8" || message_toLowerCase == "lpt9") return process.send("end");
             const https = require('https');
             const options = {
                 hostname: 'raw.githubusercontent.com',
@@ -99,7 +100,7 @@ if (cluster.isPrimary) {
                     return process.send("end");
                 } else {
                     let hash = crypto.createHash('sha256').update(message).digest('hex');
-                    if (!fs.existsSync(`./encrypt/`)){
+                    if (!fs.existsSync(`./encrypt/`)) {
                         fs.mkdirSync(`./encrypt/`);
                     }
                     if (!fs.existsSync(`./encrypt/${message.length}`)) {
