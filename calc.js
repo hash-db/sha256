@@ -1,7 +1,7 @@
-import cluster from 'node:cluster';
-import { cpus } from 'node:os';
-import process from 'node:process';
-
+let cluster = require('cluster');
+let { cpus } = require('os');
+let process = require('process');
+const fs = require('fs');
 const numCPUs = cpus().length;
 
 if (cluster.isPrimary) {
