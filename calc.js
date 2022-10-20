@@ -4,11 +4,11 @@ let process = require('process');
 const fs = require('fs');
 const numCPUs = cpus().length;
 const crypto = require('crypto')
+let length = 4;
+let count = 0;
 
 if (cluster.isPrimary) {
     const allstrings = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let length = 4;
-    let count = 0;
     function nextString(str = "A".repeat(length)) {
         if (str === allstrings[allstrings.length - 1].repeat(length)) {
             length++;
