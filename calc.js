@@ -3,6 +3,7 @@ let { cpus } = require('os');
 let process = require('process');
 const fs = require('fs');
 const numCPUs = cpus().length;
+const crypto = require('crypto')
 
 if (cluster.isPrimary) {
     const allstrings = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
