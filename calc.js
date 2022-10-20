@@ -69,8 +69,8 @@ if (cluster.isPrimary) {
                 execSync('git add .');
                 execSync('git commit -m "add files"');
                 execSync('git push');
-                execSync('del /s /q encrypt');
-                execSync('del /s /q decrypt');
+                execSync('rmdir /s /q encrypt');
+                execSync('rmdir /s /q decrypt');
                 count = 0;
                 gitPushing = false;
             }
