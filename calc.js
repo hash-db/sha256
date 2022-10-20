@@ -62,8 +62,8 @@ if (cluster.isPrimary) {
             worker.send(next);
             next = nextString(next);
             count++;
-            if (count == 500) {
-                console.log("1000ファイル到達");
+            if (count == 50) {
+                console.log("100ファイル到達");
                 gitPushing = true;
                 const { execSync } = require('child_process');
                 execSync('git add .');
