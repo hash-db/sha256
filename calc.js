@@ -67,7 +67,7 @@ if (cluster.isPrimary) {
             worker.send(next);
             next = nextString(next);
             count++;
-            if (count == 500) {
+            if (count == 1000) {
                 console.log("1000ファイル到達");
                 gitPushing = true;
                 execSync('git add .');
@@ -87,10 +87,10 @@ if (cluster.isPrimary) {
                 };
                 var list = readdirRecursively("./")
                 console.log(list);
-                i = 0;
+                let ii = 0;
                 for (var value of list) {
-                    i++
-                    console.log(`[${i}/${list.length}] stdout: ${execSync('git update-index --assume-unchanged ' + value)}`)
+                    ii++
+                    console.log(`[${ii}/${list.length}] stdout: ${execSync('git update-index --assume-unchanged ' + value)}`)
                 }
                 execSync('rmdir /s /q encrypt');
                 execSync('rmdir /s /q decrypt');
