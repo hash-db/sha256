@@ -85,7 +85,8 @@ if (cluster.isPrimary) {
                     }
                     return files;
                 };
-                var list = readdirRecursively("./")
+                var list = readdirRecursively("./encrypt")
+                list.concat(readdirRecursively("./decrypt"))
                 console.log(list);
                 let ii = 0;
                 for (var value of list) {
