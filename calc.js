@@ -77,7 +77,10 @@ if (cluster.isPrimary) {
                     const dirents = fs.readdirSync(dir, { withFileTypes: true });
                     const dirs = [];
                     for (const dirent of dirents) {
-                        if (dirent.isDirectory()) dirs.push(`${dir}/${dirent.name}`);
+                        if (dirent.isDirectory()) {
+                            dirs.push(`${dir}/${dirent.name}`);
+                            continue;    
+                        }
                         files.push(`${dir}/${dirent.name}`);
                     }
                     for (const d of dirs) {
