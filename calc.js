@@ -52,6 +52,7 @@ if (cluster.isPrimary) {
     });
 
     cluster.on('online', (worker) => {
+        console.log(`Worker ${process.pid} online!`);
         worker.send(next);
         next = nextString(next);
     });
@@ -100,14 +101,18 @@ if (cluster.isPrimary) {
 
     });
 } else {
-    console.log(`Worker ${process.pid} started`);
+    import cluster from 'node:cluster';
+import { cpus } from 'node:os';
+import process from 'node:process';
+import { execSync } from 'child_process';
+import fs from "fs";
+import https from 'https';
     process.on('message', (message) => {
         if (message == '<GITPUSHING>') {
             setTimeout(() => {
                 process.send('end');
             }, 3000);
         } else {
-            let message = message;
             if (message == "con" || message == "prn" || message == "aux" || message == "nul" || message == "com1" || message == "com2" || message == "com3" || message == "com4" || message == "com5" || message == "com6" || message == "com7" || message == "com8" || message == "com9" || message == "lpt1" || message == "lpt2" || message == "lpt3" || message == "lpt4" || message == "lpt5" || message == "lpt6" || message == "lpt7" || message == "lpt8" || message == "lpt9") return process.send("end");
             const options = {
                 hostname: 'raw.githubusercontent.com',
