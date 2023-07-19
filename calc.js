@@ -6,7 +6,7 @@ import fs from "fs";
 import https from 'https';
             
 
-const numCPUs = cpus().length * 2;
+const numCPUs = cpus().length;
 
 if (cluster.isPrimary) {
     const allstrings = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
