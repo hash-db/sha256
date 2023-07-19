@@ -102,12 +102,14 @@ if (cluster.isPrimary) {
     });
 } else {
     process.on('message', (message) => {
+        console.log(message+"received")
         if (message == '<GITPUSHING>') {
             setTimeout(() => {
                 process.send('end');
             }, 3000);
         } else {
             if (message == "con" || message == "prn" || message == "aux" || message == "nul" || message == "com1" || message == "com2" || message == "com3" || message == "com4" || message == "com5" || message == "com6" || message == "com7" || message == "com8" || message == "com9" || message == "lpt1" || message == "lpt2" || message == "lpt3" || message == "lpt4" || message == "lpt5" || message == "lpt6" || message == "lpt7" || message == "lpt8" || message == "lpt9") return process.send("end");          
+            console.log("check existing")
             const options = {
                 hostname: 'raw.githubusercontent.com',
                 port: 443,
@@ -115,9 +117,12 @@ if (cluster.isPrimary) {
                 method: 'GET'
             }
             https.request(options, res => {
+                console.log("check finish")
                 if (res.statusCode == 200) {
+                    console.log("existed")
                     return process.send("end");
                 } else {        
+                    console.log("not found")
             let hash = crypto.createHash('sha256').update(message).digest('hex');
                     if (!fs.existsSync(`./encrypt/`)){
                         fs.mkdirSync(`./encrypt/`);
