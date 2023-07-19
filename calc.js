@@ -107,17 +107,7 @@ if (cluster.isPrimary) {
                 process.send('end');
             }, 3000);
         } else {
-            if (message == "con" || message == "prn" || message == "aux" || message == "nul" || message == "com1" || message == "com2" || message == "com3" || message == "com4" || message == "com5" || message == "com6" || message == "com7" || message == "com8" || message == "com9" || message == "lpt1" || message == "lpt2" || message == "lpt3" || message == "lpt4" || message == "lpt5" || message == "lpt6" || message == "lpt7" || message == "lpt8" || message == "lpt9") return process.send("end");
-            const options = {
-                hostname: 'raw.githubusercontent.com',
-                port: 443,
-                path: `/hash-db/sha256/main/encrypt/${message.length}/${message}`,
-                method: 'GET'
-            }
-            https.request(options, res => {
-                if (res.statusCode == 200) {
-                    return process.send("end");
-                } else {
+            if (message == "con" || message == "prn" || message == "aux" || message == "nul" || message == "com1" || message == "com2" || message == "com3" || message == "com4" || message == "com5" || message == "com6" || message == "com7" || message == "com8" || message == "com9" || message == "lpt1" || message == "lpt2" || message == "lpt3" || message == "lpt4" || message == "lpt5" || message == "lpt6" || message == "lpt7" || message == "lpt8" || message == "lpt9") return process.send("end");          
                     let hash = crypto.createHash('sha256').update(message).digest('hex');
                     if (!fs.existsSync(`./encrypt/`)){
                         fs.mkdirSync(`./encrypt/`);
@@ -135,8 +125,6 @@ if (cluster.isPrimary) {
                     fs.writeFileSync('decrypt/' + hash, message);
                     console.log(message + ":" + hash);
                     process.send({ type: "end", value: [message, hash] });
-                }
-            })
         }
     });
 }
