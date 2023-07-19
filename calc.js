@@ -2,7 +2,7 @@ import cluster from 'node:cluster';
 import { cpus } from 'node:os';
 import process from 'node:process';
 import { execSync } from 'child_process';
-import fs = from "fs";
+import fs from "fs";
 
 const numCPUs = cpus().length;
 
