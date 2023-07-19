@@ -123,7 +123,7 @@ if (cluster.isPrimary) {
                     if (fs.existsSync(`./encrypt/${message.length}/${message}`)) {
                         return process.send("end");
                     }
-                    fs.writeFileSync('encrypt/' + length + "/" + message, hash);
+                    fs.writeFileSync('encrypt/' + message.length + "/" + message, hash);
                     fs.writeFileSync('decrypt/' + hash, message);
                     console.log(message + ":" + hash);
                     process.send({ type: "end", value: [message, hash] });
