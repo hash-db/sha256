@@ -1,6 +1,8 @@
 import cluster from 'node:cluster';
 import { cpus } from 'node:os';
 import process from 'node:process';
+const { execSync } = require('child_process');
+const fs = require("fs");
 
 const numCPUs = cpus().length;
 
@@ -65,10 +67,28 @@ if (cluster.isPrimary) {
             if (count == 500) {
                 console.log("1000ファイル到達");
                 gitPushing = true;
-                const { execSync } = require('child_process');
                 execSync('git add .');
                 execSync('git commit -m "add files"');
                 execSync('git push');
+                const readdirRecursively = (dir, files = []) => {
+                    const dirents = fs.readdirSync(dir, { withFileTypes: true });
+                    const dirs = [];
+                    for (const dirent of dirents) {
+                        if (dirent.isDirectory()) dirs.push(`${dir}/${dirent.name}`);
+                        files.push(`${dir}/${dirent.name}`);
+                    }
+                    for (const d of dirs) {
+                        files = readdirRecursively(d, files);
+                    }
+                    return files;
+                };
+                var list = readdirRecursively("./")
+                console.log(list);
+                i = 0;
+                for (var value of list) {
+                    i++
+                    console.log(`[${i}/${list.length}] stdout: ${execSync('git update-index --assume-unchanged ' + value)}`)
+                }
                 execSync('rmdir /s /q encrypt');
                 execSync('rmdir /s /q decrypt');
                 count = 0;
