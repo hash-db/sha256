@@ -1,8 +1,8 @@
 import cluster from 'node:cluster';
 import { cpus } from 'node:os';
 import process from 'node:process';
-const { execSync } = require('child_process');
-const fs = require("fs");
+import { execSync } from 'child_process';
+import fs = from "fs";
 
 const numCPUs = cpus().length;
 
