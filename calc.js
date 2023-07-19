@@ -101,12 +101,6 @@ if (cluster.isPrimary) {
 
     });
 } else {
-    import cluster from 'node:cluster';
-import { cpus } from 'node:os';
-import process from 'node:process';
-import { execSync } from 'child_process';
-import fs from "fs";
-import https from 'https';
     process.on('message', (message) => {
         if (message == '<GITPUSHING>') {
             setTimeout(() => {
