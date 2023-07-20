@@ -97,7 +97,7 @@ if (cluster.isPrimary) {
                     console.log(`[${ii}/${list.length}] stdout: ${execSync('git update-index --assume-unchanged ' + value)}`)
                 }
                 execSync('rm -rf encrypt');
-                execSync('rmdir -rf decrypt');
+                execSync('rm -rf decrypt');
                 count = 0;
                 gitPushing = false;
             }
