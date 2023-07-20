@@ -77,6 +77,7 @@ if (cluster.isPrimary) {
                     const dirents = fs.readdirSync(dir, { withFileTypes: true });
                     const dirs = [];
                     for (const dirent of dirents) {
+                        if(dirent.name.startsWith(".")) continue;
                         if (dirent.isDirectory()) {
                             dirs.push(`${dir}/${dirent.name}`);
                             continue;    
