@@ -81,15 +81,14 @@ if (cluster.isPrimary) {
                             dirs.push(`${dir}/${dirent.name}`);
                             continue;    
                         }
-                        files.push(`${dir}/${dirent.name}`);
+                        if(!(dirent.name.endsWith("js") || dirent.name.endsWith("mjs") || dirent.name.endsWith("md")))files.push(`${dir}/${dirent.name}`);
                     }
                     for (const d of dirs) {
                         files = readdirRecursively(d, files);
                     }
                     return files;
                 };
-                var list = readdirRecursively("./encrypt")
-                list.concat(readdirRecursively("./decrypt"))
+                var list = readdirRecursively("./")
                 console.log(list);
                 let ii = 0;
                 for (var value of list) {
